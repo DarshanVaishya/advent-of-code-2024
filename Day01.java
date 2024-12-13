@@ -2,14 +2,15 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Day01 {
-	static List<List<Integer>> parse() {
-		List<Integer> left = new LinkedList<>();
-		List<Integer> right = new LinkedList<>();
+	static List<Integer> left = new LinkedList<>();
+	static List<Integer> right = new LinkedList<>();
 
+	static void parseInput() {
 		try {
 			File inputFile = new File("Day01.data");
 			String input = Files.readString(inputFile.toPath());
@@ -23,17 +24,9 @@ public class Day01 {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		List<List<Integer>> res = new LinkedList<>();
-		res.add(left);
-		res.add(right);
-
-		return res;
 	}
 
-	public static int solve1(List<List<Integer>> data) {
-		List<Integer> left = data.get(0);
-		List<Integer> right = data.get(1);
+	public static int solve1() {
 		Collections.sort(left);
 		Collections.sort(right);
 		int res = 0;
@@ -46,8 +39,8 @@ public class Day01 {
 	}
 
 	public static void main(String[] args) {
-		List<List<Integer>> data = parse();
-		int p1Res = solve1(data);
+		parseInput();
+		int p1Res = solve1();
 		System.out.println("Part 1: " + p1Res);
 	}
 	
