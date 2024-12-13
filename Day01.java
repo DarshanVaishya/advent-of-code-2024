@@ -38,10 +38,29 @@ public class Day01 {
 		return res;
 	}
 
+	public static int solve2() {
+		HashMap<Integer, Integer> occ = new HashMap<>();
+
+		for(int i = 0; i < right.size(); i++) {
+			int num = right.get(i);
+			occ.put(num, occ.getOrDefault(num, 0) + 1);
+		}
+
+		int res = 0;
+		for(int i = 0; i < left.size(); i++) {
+			int num = left.get(i);
+			res += num * occ.getOrDefault(num, 0);
+		}
+
+		return res;
+	}
+
 	public static void main(String[] args) {
 		parseInput();
 		int p1Res = solve1();
 		System.out.println("Part 1: " + p1Res);
+		int p2Res = solve2();
+		System.out.println("Part 2: " + p2Res);
 	}
 	
 }
