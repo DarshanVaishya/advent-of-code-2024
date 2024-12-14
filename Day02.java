@@ -28,33 +28,28 @@ public class Day02 {
 	public static int solve1() {
 		int res = 0;
 		for (List<Integer> row : data) {
-			boolean inc = false;
-			boolean dec = false;
-			boolean isValid = true;
+			boolean isSafe = true;
+			boolean isInc = false;
+			int prev = row.get(0);
+			int curr = row.get(1);
 
-			for(int i = 0; i < row.size() - 1; i++) {
-				int n1 = row.get(i);
-				int n2 = row.get(i + 1);
+			if(prev < curr && prev != curr) isInc = true;
+			else if(prev == curr) continue;
 
-				if(n1 < n2) {
-					inc = true;
-				} else if(n1 > n2) {
-					dec = true;
-				} else {
-					isValid = false;
+			for(int i = 1; i < row.size(); i++) {
+				curr = row.get(i);
+				int diff = Math.abs(curr - prev);
+
+				if(isInc && prev >= curr || !isInc && prev <= curr) {
+					isSafe = false;
+					break;
+				} else if(diff < 1 || diff > 3) {
+					isSafe = false;
 					break;
 				}
-
-				int diff = Math.abs(n1 - n2);
-
-				if((diff <= 0 || diff > 3) || (inc == dec == true)) {
-					isValid = false;
-					break;
-				}
+				prev = curr;
 			}
-
-			if (isValid)
-				res++;
+			if(isSafe) res++;
 		}
 
 		return res;
