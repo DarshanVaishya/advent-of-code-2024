@@ -13,10 +13,9 @@ public class Day01 {
 	static void parseInput() {
 		try {
 			File inputFile = new File("Day01.data");
-			String input = Files.readString(inputFile.toPath());
-			String[] data = input.split("\n");
+			String data = Files.readString(inputFile.toPath());
 
-			for(String row : data) {
+			for(String row : data.split("\n")) {
 				String[] items = row.split("   ");
 				left.add(Integer.parseInt(items[0]));
 				right.add(Integer.parseInt(items[1]));
